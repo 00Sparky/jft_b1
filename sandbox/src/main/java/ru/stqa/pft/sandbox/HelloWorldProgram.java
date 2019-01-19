@@ -1,4 +1,6 @@
-public class hw {
+package ru.stqa.pft.sandbox;
+
+public class HelloWorldProgram {
 
   public static void main (String[] args) {
 
