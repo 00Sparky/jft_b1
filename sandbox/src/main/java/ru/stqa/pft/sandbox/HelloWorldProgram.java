@@ -6,6 +6,15 @@ public class HelloWorldProgram {
         hello("World");
         hello("user");
 
+        double side=3;
+        System.out.println("Площадь квадрата ("+ side+ ") ="+ area(side));
+
+        double length=2;
+        double width=3;
+
+        System.out.println("Площадь прямоугольника ("+ length+ ", "+width+ ") ="+ area(length, width));
+
+
     }
 
     public static void hello(String username) {
@@ -16,4 +25,7 @@ public class HelloWorldProgram {
         return l*l;
     }
 
+    public static double area (double a, double b){
+       return a*b;
+    }
 }
