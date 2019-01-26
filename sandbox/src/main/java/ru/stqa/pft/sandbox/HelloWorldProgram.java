@@ -6,13 +6,12 @@ public class HelloWorldProgram {
         hello("World");
         hello("user");
 
-        double side=3;
-        System.out.println("Площадь квадрата ("+ side+ ") ="+ area(side));
+        Square s=new Square(21.2);
+        System.out.println("Площадь квадрата ("+s.l+ ") ="+ area(s));
 
-        double length=2;
-        double width=3;
 
-        System.out.println("Площадь прямоугольника ("+ length+ ", "+width+ ") ="+ area(length, width));
+        Rectangle r= new Rectangle(4.6,1.8);
+        System.out.println("Площадь прямоугольника ("+ r.a+ ", "+r.b+ ") ="+ area(r));
 
 
     }
@@ -21,11 +20,11 @@ public class HelloWorldProgram {
         System.out.println("Hello," + username +"! I`m working.");
 
     }
-    public static double area(double l) {
-        return l*l;
+    public static double area(Square s) {
+        return s.l*s.l;
     }
 
-    public static double area (double a, double b){
-       return a*b;
+    public static double area (Rectangle r){
+       return r.a*r.b;
     }
 }
