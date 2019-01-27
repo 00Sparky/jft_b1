@@ -10,7 +10,8 @@ public class Rectangle {
         this.b=width;
     }
 
-    public double area (){
+    public double area ()
+    {
         return this.a*this.b;
     }
 }
