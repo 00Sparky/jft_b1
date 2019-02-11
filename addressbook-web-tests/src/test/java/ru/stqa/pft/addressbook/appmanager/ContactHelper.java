@@ -10,7 +10,7 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-    public void fillNewUserForm(UserData_Mainpage userData_Mainpage) {
+    public void fillUserForm(UserData_Mainpage userData_Mainpage) {
         type(By.name("firstname"), userData_Mainpage.getNewUserName());
         type(By.name("lastname"), userData_Mainpage.getNewUserLastname() );
         type(By.name("address"), userData_Mainpage.getNewUserAddress());
@@ -22,4 +22,23 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void submitUserModification() {
+        click(By.name("update"));
+    }
+
+    public void initUserModification() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void deleteSelectedUsers() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
+
+    public void submitDelete() {
+        wd.switchTo().alert().accept();
+    }
 }
