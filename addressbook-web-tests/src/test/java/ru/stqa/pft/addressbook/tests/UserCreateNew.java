@@ -10,7 +10,7 @@ public class UserCreateNew extends TestBase {
   public void testNewUserCreation() throws Exception {
     app.getNavigationHelper().gotoHomepage();
     app.getNavigationHelper().goToAddNewUserPage();
-    app.getContactHelper().fillUserForm(new UserData_Mainpage("Firstname", "Lastname", "Fill address form", "3224441123", "mailname@mail.do"));
+    app.getContactHelper().fillUserForm(new UserData_Mainpage("Firstname", "Lastname", "Fill address form", "3224441123", "mailname@mail.do", "test1"), true);
     app.getContactHelper().submitNewUserCreation();
   }
 

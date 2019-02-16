@@ -10,7 +10,7 @@ public class UserModificationTest extends TestBase {
         app.getNavigationHelper().gotoHomepage();
         app.getContactHelper().selectContact();
         app.getContactHelper().initUserModification();
-        app.getContactHelper().fillUserForm(new UserData_Mainpage("Firstname-edit", "Lastname", "Fill address form", "3224441123", "mailname@mail.do"));
+        app.getContactHelper().fillUserForm(new UserData_Mainpage("Firstname-edit", "Lastname", "Fill address form", "3224441123", "mailname@mail.do", null), false);
         app.getContactHelper().submitUserModification();
     }
 }

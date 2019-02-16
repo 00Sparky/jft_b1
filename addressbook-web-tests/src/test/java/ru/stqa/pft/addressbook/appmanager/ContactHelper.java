@@ -1,7 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData_Mainpage;
 
 public class ContactHelper extends HelperBase {
@@ -10,12 +13,18 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-    public void fillUserForm(UserData_Mainpage userData_Mainpage) {
+    public void fillUserForm(UserData_Mainpage userData_Mainpage, boolean creation) {
         type(By.name("firstname"), userData_Mainpage.getNewUserName());
         type(By.name("lastname"), userData_Mainpage.getNewUserLastname() );
         type(By.name("address"), userData_Mainpage.getNewUserAddress());
         type(By.name("mobile"), userData_Mainpage.getNewUserMoblle());
         type(By.name("email"), userData_Mainpage.getNewUserEmail());
+
+        if (creation) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(UserData_Mainpage.getGroup());
+        } else {
+            Assert.assertFalse(isElementPrestnt(By.name("new_group")));
+        }
     }
 
     public void submitNewUserCreation() {
