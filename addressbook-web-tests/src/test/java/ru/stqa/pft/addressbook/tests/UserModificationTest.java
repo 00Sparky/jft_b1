@@ -11,7 +11,6 @@ public class UserModificationTest extends TestBase {
         if (! app.getContactHelper().isContactExists()) {
             app.getContactHelper().createNewContact(new UserData_Mainpage("Firstname", "Lastname", "Fill address form", "3224441123", "mailname@mail.do", "test1"), true);
         }
-        app.getNavigationHelper().gotoHomepage();
         app.getContactHelper().selectContact();
         app.getContactHelper().initUserModification();
         app.getContactHelper().fillUserForm(new UserData_Mainpage("Firstname-edit", "Lastname", "Fill address form", "3224441123", "mailname@mail.do", null), false);

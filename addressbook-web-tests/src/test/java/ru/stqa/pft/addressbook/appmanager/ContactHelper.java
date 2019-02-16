@@ -34,6 +34,9 @@ public class ContactHelper extends HelperBase {
     public void submitNewUserCreation() {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
+    public void returnToHomePage() {
+        click(By.linkText("home"));
+    }
 
     public void selectContact() {
         click(By.name("selected[]"));
@@ -59,6 +62,7 @@ public class ContactHelper extends HelperBase {
         goToAddNewUserPage();
         fillUserForm(contactData, true);
         submitNewUserCreation();
+        returnToHomePage();
     }
 
     public boolean isContactExists() {
