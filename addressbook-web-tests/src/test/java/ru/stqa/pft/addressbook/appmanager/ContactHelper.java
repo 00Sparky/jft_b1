@@ -13,6 +13,10 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
+    public void goToAddNewUserPage() {
+        click(By.linkText("add new"));
+    }
+
     public void fillUserForm(UserData_Mainpage userData_Mainpage, boolean creation) {
         type(By.name("firstname"), userData_Mainpage.getNewUserName());
         type(By.name("lastname"), userData_Mainpage.getNewUserLastname() );
@@ -49,5 +53,15 @@ public class ContactHelper extends HelperBase {
 
     public void submitDelete() {
         wd.switchTo().alert().accept();
+    }
+
+    public void createNewContact(UserData_Mainpage contactData,boolean creation) {
+        goToAddNewUserPage();
+        fillUserForm(contactData, true);
+        submitNewUserCreation();
+    }
+
+    public boolean isContactExists() {
+        return isElementPrestnt(By.name("selected[]"));
     }
 }
