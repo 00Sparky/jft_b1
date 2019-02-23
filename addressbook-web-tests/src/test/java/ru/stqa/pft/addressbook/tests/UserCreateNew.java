@@ -9,7 +9,7 @@ import java.util.List;
 public class UserCreateNew extends TestBase {
 
 
-  @Test
+  @Test(enabled = false)
   public void testNewUserCreation() throws Exception {
     app.getNavigationHelper().gotoHomepage();
     List<UserData_Mainpage> before = app.getContactHelper().getContactList();
