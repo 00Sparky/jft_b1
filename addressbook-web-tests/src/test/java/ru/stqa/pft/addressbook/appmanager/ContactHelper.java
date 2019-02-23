@@ -3,9 +3,13 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData_Mainpage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -19,7 +23,7 @@ public class ContactHelper extends HelperBase {
 
     public void fillUserForm(UserData_Mainpage userData_Mainpage, boolean creation) {
         type(By.name("firstname"), userData_Mainpage.getNewUserName());
-        type(By.name("lastname"), userData_Mainpage.getNewUserLastname() );
+        type(By.name("lastname"), userData_Mainpage.getNewUserLastname());
         type(By.name("address"), userData_Mainpage.getNewUserAddress());
         type(By.name("mobile"), userData_Mainpage.getNewUserMoblle());
         type(By.name("email"), userData_Mainpage.getNewUserEmail());
@@ -34,12 +38,13 @@ public class ContactHelper extends HelperBase {
     public void submitNewUserCreation() {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
+
     public void returnToHomePage() {
         click(By.linkText("home"));
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void submitUserModification() {
@@ -58,7 +63,7 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public void createNewContact(UserData_Mainpage contactData,boolean creation) {
+    public void createNewContact(UserData_Mainpage contactData, boolean creation) {
         goToAddNewUserPage();
         fillUserForm(contactData, true);
         submitNewUserCreation();
@@ -67,5 +72,17 @@ public class ContactHelper extends HelperBase {
 
     public boolean isContactExists() {
         return isElementPrestnt(By.name("selected[]"));
+    }
+
+    public List<UserData_Mainpage> getContactList() {
+        List<UserData_Mainpage> contacts = new ArrayList<UserData_Mainpage>();
+        List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
+        for (WebElement element : elements) {
+            String first_name = element.findElement(By.xpath("./td[3]")).getText();
+            String last_name = element.findElement(By.xpath("./td[2]")).getText() ;
+            UserData_Mainpage contact = new UserData_Mainpage(first_name, last_name, null, null, null, null);
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }
