@@ -11,7 +11,7 @@ public class UserCreateNew extends TestBase {
 
   @Test(enabled = false)
   public void testNewUserCreation() throws Exception {
-    app.getNavigationHelper().gotoHomepage();
+    app.goTo().gotoHomepage();
     List<UserData_Mainpage> before = app.getContactHelper().getContactList();
     app.getContactHelper().goToAddNewUserPage();
     app.getContactHelper().fillUserForm(new UserData_Mainpage("Firstname", "Lastname", "Fill address form", "3224441123", "mailname@mail.do", "test1"), true);

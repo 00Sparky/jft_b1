@@ -1,34 +1,31 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationTests extends TestBase {
 
     @BeforeMethod
     public void Preconditions() {
-        app.getNavigationHelper().gotoGroupPage();
-        if (!app.getGroupHelper().isGroupExists()) {
-            app.getGroupHelper().createGroup(new GroupData("test1", "test2", "test3"));
+        app.goTo().GroupPage();
+        if (app.group().list().size()==0) {
+            app.group().create(new GroupData("test1", "test2", "test3"));
         }
     }
 
     @Test
     public void testGroupModification() {
-        app.getNavigationHelper().gotoGroupPage();
-        List<GroupData> before = app.getGroupHelper().getGroupList();
+        app.goTo().GroupPage();
+        List<GroupData> before = app.group().list();
         int index = before.size() - 1;
         GroupData group = new GroupData(before.get(index).getId(), "test1", "test2-edit", "test3-edit");
-        app.getGroupHelper().modifyGroup(index, group);
-        List<GroupData> after = app.getGroupHelper().getGroupList();
+        app.group().modify(index, group);
+        List<GroupData> after = app.group().list();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(index);

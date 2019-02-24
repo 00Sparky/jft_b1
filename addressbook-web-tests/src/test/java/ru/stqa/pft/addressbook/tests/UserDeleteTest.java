@@ -10,7 +10,7 @@ public class UserDeleteTest extends TestBase {
 
     @Test (enabled = false)
     public void testUserDelete(){
-        app.getNavigationHelper().gotoHomepage();
+        app.goTo().gotoHomepage();
         if (! app.getContactHelper().isContactExists()) {
             app.getContactHelper().createNewContact(new UserData_Mainpage("Firstname", "Lastname", "Fill address form", "3224441123", "mailname@mail.do", "test1"), true);
         }
