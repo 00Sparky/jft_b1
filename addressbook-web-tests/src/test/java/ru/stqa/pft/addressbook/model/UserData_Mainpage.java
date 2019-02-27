@@ -4,13 +4,15 @@ import java.util.Objects;
 
 public class UserData_Mainpage {
 
-    private final String newUserName;
-    private final String newUserLastname;
-    private final String newUserAddress;
-    private final String newUserMoblle;
-    private final String newUserEmail;
+    private int id = Integer.MAX_VALUE;
+    private String newUserName;
+    private String newUserLastname;
+    private String newUserAddress;
+    private String newUserMoblle;
+    private String newUserEmail;
     private static String group;
 
+    /*
     public UserData_Mainpage(String NewUserName, String NewUserLastname, String NewUserAddress, String NewUserMoblle, String NewUserEmail, String Group) {
         newUserName = NewUserName;
         newUserLastname = NewUserLastname;
@@ -18,6 +20,11 @@ public class UserData_Mainpage {
         newUserMoblle = NewUserMoblle;
         newUserEmail = NewUserEmail;
         group = Group;
+    }
+    */
+
+    public int getId() {
+        return id;
     }
 
     public String getNewUserName() {
@@ -42,6 +49,41 @@ public class UserData_Mainpage {
 
     public static String getGroup() {
         return group;
+    }
+
+    public UserData_Mainpage withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public UserData_Mainpage withNewUserName(String newUserName) {
+        this.newUserName = newUserName;
+        return this;
+    }
+
+    public UserData_Mainpage withNewUserLastname(String newUserLastname) {
+        this.newUserLastname = newUserLastname;
+        return this;
+    }
+
+    public UserData_Mainpage withNewUserAddress(String newUserAddress) {
+        this.newUserAddress = newUserAddress;
+        return this;
+    }
+
+    public UserData_Mainpage withNewUserMoblle(String newUserMoblle) {
+        this.newUserMoblle = newUserMoblle;
+        return this;
+    }
+
+    public UserData_Mainpage withNewUserEmail(String newUserEmail) {
+        this.newUserEmail = newUserEmail;
+        return this;
+    }
+
+    public UserData_Mainpage withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     @Override

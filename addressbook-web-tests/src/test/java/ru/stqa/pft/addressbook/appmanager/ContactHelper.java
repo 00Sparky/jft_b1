@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.UserData_Mainpage;
 
 import java.util.ArrayList;
@@ -43,16 +44,17 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home"));
     }
 
-    public void selectContact(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "' ]")).click();
+        // wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void submitUserModification() {
         click(By.name("update"));
     }
 
-    public void initUserModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initUserModificationById(int id) {
+        click(By.xpath("//a[@href='edit.php?id="+id+"']"));
     }
 
     public void deleteSelectedUsers() {
@@ -70,18 +72,35 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
+    public void modifyContact(UserData_Mainpage contact, boolean creation) {
+        initUserModificationById(contact.getId());
+        fillUserForm(contact, false);
+        submitUserModification();
+        returnToHomePage();
+    }
+
+    public void deleteContact(UserData_Mainpage contact) {
+        selectContactById(contact.getId());
+        deleteSelectedUsers();
+        submitDelete();
+        returnToHomePage();
+    }
+
     public boolean isContactExists() {
         return isElementPrestnt(By.name("selected[]"));
     }
 
-    public List<UserData_Mainpage> getContactList() {
-        List<UserData_Mainpage> contacts = new ArrayList<UserData_Mainpage>();
+    public Contacts getContactList() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
         for (WebElement element : elements) {
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String first_name = element.findElement(By.xpath("./td[3]")).getText();
-            String last_name = element.findElement(By.xpath("./td[2]")).getText() ;
-            UserData_Mainpage contact = new UserData_Mainpage(first_name, last_name, null, null, null, null);
-            contacts.add(contact);
+            String last_name = element.findElement(By.xpath("./td[2]")).getText();
+            contacts.add(new UserData_Mainpage()
+                    .withId(id)
+                    .withNewUserName(first_name)
+                    .withNewUserLastname(last_name));
         }
         return contacts;
     }
