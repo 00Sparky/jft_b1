@@ -14,6 +14,9 @@ public class ContactData {
     private String NewUserHomephone;
     private String NewUserWorkphone;
 
+
+    private String allPhones;
+
     /*
     public ContactData(String NewUserName, String NewUserLastname, String NewUserAddress, String NewUserMoblle, String NewUserEmail, String Group) {
         newUserName = NewUserName;
@@ -40,6 +43,11 @@ public class ContactData {
     public String getNewUserAddress() {
         return newUserAddress;
     }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
     public String getNewUserHomephone() {
         return NewUserHomephone;
     }
@@ -80,6 +88,10 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
 
     public ContactData withNewUserHomephone(String newUserHomephone) {
         this.NewUserHomephone = newUserHomephone;
@@ -127,4 +139,6 @@ public class ContactData {
     public int hashCode() {
         return Objects.hash(newUserName, newUserLastname);
     }
+
+
 }
