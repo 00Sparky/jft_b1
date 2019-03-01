@@ -2,7 +2,7 @@ package ru.stqa.pft.addressbook.model;
 
 import java.util.Objects;
 
-public class UserData_Mainpage {
+public class ContactData {
 
     private int id = Integer.MAX_VALUE;
     private String newUserName;
@@ -11,9 +11,11 @@ public class UserData_Mainpage {
     private String newUserMoblle;
     private String newUserEmail;
     private static String group;
+    private String NewUserHomephone;
+    private String NewUserWorkphone;
 
     /*
-    public UserData_Mainpage(String NewUserName, String NewUserLastname, String NewUserAddress, String NewUserMoblle, String NewUserEmail, String Group) {
+    public ContactData(String NewUserName, String NewUserLastname, String NewUserAddress, String NewUserMoblle, String NewUserEmail, String Group) {
         newUserName = NewUserName;
         newUserLastname = NewUserLastname;
         newUserAddress = NewUserAddress;
@@ -38,9 +40,16 @@ public class UserData_Mainpage {
     public String getNewUserAddress() {
         return newUserAddress;
     }
+    public String getNewUserHomephone() {
+        return NewUserHomephone;
+    }
 
     public String getNewUserMoblle() {
         return newUserMoblle;
+    }
+
+    public String getNewUserWorkphone() {
+        return NewUserWorkphone;
     }
 
     public String getNewUserEmail() {
@@ -51,44 +60,55 @@ public class UserData_Mainpage {
         return group;
     }
 
-    public UserData_Mainpage withId(int id) {
+    public ContactData withId(int id) {
         this.id = id;
         return this;
     }
 
-    public UserData_Mainpage withNewUserName(String newUserName) {
+    public ContactData withNewUserName(String newUserName) {
         this.newUserName = newUserName;
         return this;
     }
 
-    public UserData_Mainpage withNewUserLastname(String newUserLastname) {
+    public ContactData withNewUserLastname(String newUserLastname) {
         this.newUserLastname = newUserLastname;
         return this;
     }
 
-    public UserData_Mainpage withNewUserAddress(String newUserAddress) {
+    public ContactData withNewUserAddress(String newUserAddress) {
         this.newUserAddress = newUserAddress;
         return this;
     }
 
-    public UserData_Mainpage withNewUserMoblle(String newUserMoblle) {
+
+    public ContactData withNewUserHomephone(String newUserHomephone) {
+        this.NewUserHomephone = newUserHomephone;
+        return this;
+    }
+
+    public ContactData withNewUserMoblle(String newUserMoblle) {
         this.newUserMoblle = newUserMoblle;
         return this;
     }
 
-    public UserData_Mainpage withNewUserEmail(String newUserEmail) {
+    public ContactData withNewUserWorkphone(String newUserWorkphone) {
+        this.NewUserWorkphone = newUserWorkphone;
+        return this;
+    }
+
+    public ContactData withNewUserEmail(String newUserEmail) {
         this.newUserEmail = newUserEmail;
         return this;
     }
 
-    public UserData_Mainpage withGroup(String group) {
+    public ContactData withGroup(String group) {
         this.group = group;
         return this;
     }
 
     @Override
     public String toString() {
-        return "UserData_Mainpage{" +
+        return "ContactData{" +
                 "newUserName='" + newUserName + '\'' +
                 ", newUserLastname='" + newUserLastname + '\'' +
                 '}';
@@ -98,7 +118,7 @@ public class UserData_Mainpage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserData_Mainpage that = (UserData_Mainpage) o;
+        ContactData that = (ContactData) o;
         return Objects.equals(newUserName, that.newUserName) &&
                 Objects.equals(newUserLastname, that.newUserLastname);
     }

@@ -1,15 +1,13 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.UserData_Mainpage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -22,15 +20,15 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void fillUserForm(UserData_Mainpage userData_Mainpage, boolean creation) {
-        type(By.name("firstname"), userData_Mainpage.getNewUserName());
-        type(By.name("lastname"), userData_Mainpage.getNewUserLastname());
-        type(By.name("address"), userData_Mainpage.getNewUserAddress());
-        type(By.name("mobile"), userData_Mainpage.getNewUserMoblle());
-        type(By.name("email"), userData_Mainpage.getNewUserEmail());
+    public void fillUserForm(ContactData contactData_, boolean creation) {
+        type(By.name("firstname"), contactData_.getNewUserName());
+        type(By.name("lastname"), contactData_.getNewUserLastname());
+        type(By.name("address"), contactData_.getNewUserAddress());
+        type(By.name("mobile"), contactData_.getNewUserMoblle());
+        type(By.name("email"), contactData_.getNewUserEmail());
 
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(UserData_Mainpage.getGroup());
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
         } else {
             Assert.assertFalse(isElementPrestnt(By.name("new_group")));
         }
@@ -45,7 +43,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[value='" + id + "' ]")).click();
+        wd.findElement(By.cssSelector(String.format("input[value='%s' ]", id))).click();
         // wd.findElements(By.name("selected[]")).get(index).click();
     }
 
@@ -54,7 +52,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initUserModificationById(int id) {
-        click(By.xpath("//a[@href='edit.php?id="+id+"']"));
+        click(By.xpath("//a[@href='edit.php?id=" + id + "']"));
     }
 
     public void deleteSelectedUsers() {
@@ -65,21 +63,21 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public void createNewContact(UserData_Mainpage contactData, boolean creation) {
+    public void createNewContact(ContactData contactData, boolean creation) {
         goToAddNewUserPage();
         fillUserForm(contactData, true);
         submitNewUserCreation();
         returnToHomePage();
     }
 
-    public void modifyContact(UserData_Mainpage contact, boolean creation) {
+    public void modifyContact(ContactData contact, boolean creation) {
         initUserModificationById(contact.getId());
         fillUserForm(contact, false);
         submitUserModification();
         returnToHomePage();
     }
 
-    public void deleteContact(UserData_Mainpage contact) {
+    public void deleteContact(ContactData contact) {
         selectContactById(contact.getId());
         deleteSelectedUsers();
         submitDelete();
@@ -90,18 +88,39 @@ public class ContactHelper extends HelperBase {
         return isElementPrestnt(By.name("selected[]"));
     }
 
-    public Contacts getContactList() {
+    public Contacts all() {
         Contacts contacts = new Contacts();
-        List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));
-        for (WebElement element : elements) {
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            String first_name = element.findElement(By.xpath("./td[3]")).getText();
-            String last_name = element.findElement(By.xpath("./td[2]")).getText();
-            contacts.add(new UserData_Mainpage()
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+            String first_name = cells.get(1).getText();
+            String last_name = cells.get(2).getText();
+            String[] phones = cells.get(5).getText().split("\n");
+            contacts.add(new ContactData()
                     .withId(id)
                     .withNewUserName(first_name)
-                    .withNewUserLastname(last_name));
+                    .withNewUserLastname(last_name)
+                    .withNewUserHomephone(phones[0])
+                    .withNewUserMoblle(phones[1])
+                    .withNewUserWorkphone(phones[2]));
         }
         return contacts;
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initUserModificationById(contact.getId());
+        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String moblle = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId())
+                .withNewUserName(firstname)
+                .withNewUserLastname(lastname)
+                .withNewUserHomephone(home)
+                .withNewUserMoblle(moblle)
+                .withNewUserWorkphone(work);
     }
 }

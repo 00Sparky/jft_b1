@@ -5,30 +5,30 @@ import com.google.common.collect.ForwardingSet;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Contacts extends ForwardingSet<UserData_Mainpage> {
+public class Contacts extends ForwardingSet<ContactData> {
 
-    private Set<UserData_Mainpage> deligate;
+    private Set<ContactData> deligate;
 
     public Contacts(Contacts contacts) {
-        this.deligate = new HashSet<UserData_Mainpage>(contacts.deligate);
+        this.deligate = new HashSet<ContactData>(contacts.deligate);
     }
 
     public Contacts() {
-        this.deligate = new HashSet<UserData_Mainpage>();
+        this.deligate = new HashSet<ContactData>();
     }
 
     @Override
-    protected Set<UserData_Mainpage> delegate() {
+    protected Set<ContactData> delegate() {
         return deligate;
     }
 
-    public Contacts withAdded(UserData_Mainpage contact) {
+    public Contacts withAdded(ContactData contact) {
         Contacts contacts = new Contacts(this);
         contacts.add(contact);
         return contacts;
     }
 
-    public Contacts without(UserData_Mainpage contact) {
+    public Contacts without(ContactData contact) {
         Contacts contacts = new Contacts(this);
         contacts.remove(contact);
         return contacts;
