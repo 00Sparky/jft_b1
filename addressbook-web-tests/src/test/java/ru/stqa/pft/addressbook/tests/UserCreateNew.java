@@ -21,7 +21,7 @@ public class UserCreateNew extends TestBase {
             .withNewUserLastname("Fluent")
             .withNewUserAddress("Fill address form")
             .withNewUserMoblle("3224441123")
-            .withNewUserEmail("mailname@mail.do")
+            .withNewUserEmail1("mailname@mail.do")
             .withGroup("test1");
     app.contact().fillUserForm(contact, true);
     app.contact().submitNewUserCreation();
