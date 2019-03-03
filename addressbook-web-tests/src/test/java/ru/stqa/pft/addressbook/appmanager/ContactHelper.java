@@ -20,12 +20,13 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void fillUserForm(ContactData contactData_, boolean creation) {
-        type(By.name("firstname"), contactData_.getNewUserName());
-        type(By.name("lastname"), contactData_.getNewUserLastname());
-        type(By.name("address"), contactData_.getNewUserAddress());
-        type(By.name("mobile"), contactData_.getNewUserMoblle());
-        type(By.name("email"), contactData_.getNewUserEmail1());
+    public void fillUserForm(ContactData contactData, boolean creation) {
+        type(By.name("firstname"), contactData.getNewUserName());
+        type(By.name("lastname"), contactData.getNewUserLastname());
+        type(By.name("address"), contactData.getNewUserAddress());
+        type(By.name("mobile"), contactData.getNewUserMoblle());
+        type(By.name("email"), contactData.getNewUserEmail1());
+        attach(By.name("photo"), contactData.getPhoto());
 
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
@@ -86,6 +87,10 @@ public class ContactHelper extends HelperBase {
 
     public boolean isContactExists() {
         return isElementPrestnt(By.name("selected[]"));
+    }
+
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
     }
 
     public Contacts all() {
