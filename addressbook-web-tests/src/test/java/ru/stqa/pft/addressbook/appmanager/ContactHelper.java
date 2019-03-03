@@ -20,7 +20,7 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-<<<<<<< HEAD
+
     public void fillUserForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getNewUserName());
         type(By.name("lastname"), contactData.getNewUserLastname());
@@ -28,17 +28,6 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactData.getNewUserMoblle());
         type(By.name("email"), contactData.getNewUserEmail1());
         attach(By.name("photo"), contactData.getPhoto());
-=======
-    public void fillUserForm(ContactData contactData_, boolean creation) {
-        type(By.name("firstname"), contactData_.getNewUserName());
-        type(By.name("lastname"), contactData_.getNewUserLastname());
-        type(By.name("address"), contactData_.getNewUserAddress());
-        type(By.name("mobile"), contactData_.getNewUserMoblle());
-        type(By.name("email"), contactData_.getNewUserEmail());
-<<<<<<< HEAD
->>>>>>> parent of b393161... Task #11
-=======
->>>>>>> parent of b393161... Task #11
 
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());

@@ -24,16 +24,10 @@ public class UserCreateNew extends TestBase {
             .withNewUserLastname("Fluent")
             .withNewUserAddress("Fill address form")
             .withNewUserMoblle("3224441123")
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             .withNewUserEmail1("mailname@mail.do")
             .withPhoto(photo)
-=======
-            .withNewUserEmail("mailname@mail.do")
->>>>>>> parent of b393161... Task #11
-=======
-            .withNewUserEmail("mailname@mail.do")
->>>>>>> parent of b393161... Task #11
+
             .withGroup("test1");
     app.contact().createNewContact(contact, true);
 

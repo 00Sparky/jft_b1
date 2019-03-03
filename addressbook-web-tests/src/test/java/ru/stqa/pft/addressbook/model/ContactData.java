@@ -10,11 +10,9 @@ public class ContactData {
     private String newUserLastname;
     private String newUserAddress;
     private String newUserMoblle;
-<<<<<<< HEAD
+
     private String newUserEmail1;
-=======
-    private String newUserEmail;
->>>>>>> parent of b393161... Task #11
+
     private static String group;
     private String NewUserHomephone;
     private String NewUserWorkphone;
@@ -66,17 +64,13 @@ public class ContactData {
         return NewUserWorkphone;
     }
 
-<<<<<<< HEAD
     public String getNewUserEmail1() {
         return newUserEmail1;
     }
 
     public File getPhoto() {
         return photo;
-=======
-    public String getNewUserEmail() {
-        return newUserEmail;
->>>>>>> parent of b393161... Task #11
+
     }
 
     public static String getGroup() {
@@ -123,7 +117,7 @@ public class ContactData {
         return this;
     }
 
-<<<<<<< HEAD
+
     public ContactData withNewUserEmail1(String newUserEmail1) {
         this.newUserEmail1 = newUserEmail1;
         return this;
@@ -131,39 +125,36 @@ public class ContactData {
 
     public ContactData withPhoto(File photo) {
         this.photo = photo;
-=======
-    public ContactData withNewUserEmail(String newUserEmail) {
-        this.newUserEmail = newUserEmail;
->>>>>>> parent of b393161... Task #11
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }
 
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "newUserName='" + newUserName + '\'' +
-                ", newUserLastname='" + newUserLastname + '\'' +
-                '}';
-    }
+        public ContactData withGroup (String group){
+            this.group = group;
+            return this;
+        }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return Objects.equals(newUserName, that.newUserName) &&
-                Objects.equals(newUserLastname, that.newUserLastname);
-    }
+        @Override
+        public String toString () {
+            return "ContactData{" +
+                    "newUserName='" + newUserName + '\'' +
+                    ", newUserLastname='" + newUserLastname + '\'' +
+                    '}';
+        }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(newUserName, newUserLastname);
-    }
+        @Override
+        public boolean equals (Object o){
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ContactData that = (ContactData) o;
+            return Objects.equals(newUserName, that.newUserName) &&
+                    Objects.equals(newUserLastname, that.newUserLastname);
+        }
+
+        @Override
+        public int hashCode () {
+            return Objects.hash(newUserName, newUserLastname);
+        }
 
 
 }
