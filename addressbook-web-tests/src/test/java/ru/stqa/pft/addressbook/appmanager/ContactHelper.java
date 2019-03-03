@@ -35,6 +35,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData_.getNewUserAddress());
         type(By.name("mobile"), contactData_.getNewUserMoblle());
         type(By.name("email"), contactData_.getNewUserEmail());
+<<<<<<< HEAD
+>>>>>>> parent of b393161... Task #11
+=======
 >>>>>>> parent of b393161... Task #11
 
         if (creation) {
