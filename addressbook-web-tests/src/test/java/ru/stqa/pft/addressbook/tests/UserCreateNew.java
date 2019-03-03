@@ -13,36 +13,23 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserCreateNew extends TestBase {
 
 
-  @Test
-  public void testNewUserCreation() throws Exception {
-    app.goTo().gotoHomepage();
-    Contacts before = app.contact().all();
-    app.contact().goToAddNewUserPage();
-    File photo = new File("src/test/resources/file.jpg");
-    ContactData contact = new ContactData()
-            .withNewUserName("Firstname")
-            .withNewUserLastname("Fluent")
-            .withNewUserAddress("Fill address form")
-            .withNewUserMoblle("3224441123")
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            .withNewUserEmail1("mailname@mail.do")
-            .withPhoto(photo)
-=======
-            .withNewUserEmail("mailname@mail.do")
->>>>>>> parent of b393161... Task #11
-=======
-            .withNewUserEmail("mailname@mail.do")
->>>>>>> parent of b393161... Task #11
-=======
-            .withNewUserEmail("mailname@mail.do")
->>>>>>> parent of b393161... Task #11
-            .withGroup("test1");
-    app.contact().createNewContact(contact, true);
+    @Test
+    public void testNewUserCreation() throws Exception {
+        app.goTo().gotoHomepage();
+        Contacts before = app.contact().all();
+        app.contact().goToAddNewUserPage();
+        File photo = new File("src/test/resources/file.jpg");
+        ContactData contact = new ContactData()
+                .withNewUserName("Firstname")
+                .withNewUserLastname("Fluent")
+                .withNewUserAddress("Fill address form")
+                .withNewUserMoblle("3224441123")
+                .withNewUserEmail1("mailname@mail.do")
+                .withGroup("test1");
+        app.contact().createNewContact(contact, true);
 
-    Assert.assertEquals(app.contact().count(), before.size()+1);
-    Contacts after = app.contact().all();
-    assertThat(after, equalTo(before.withAdded(contact)));
-  }
+        Contacts after = app.contact().all();
+        Assert.assertEquals(after.size(), before.size() + 1);
+        assertThat(after, equalTo(before.withAdded(contact)));
+    }
 }

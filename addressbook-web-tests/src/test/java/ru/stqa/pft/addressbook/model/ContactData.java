@@ -10,7 +10,7 @@ public class ContactData {
     private String newUserLastname;
     private String newUserAddress;
     private String newUserMoblle;
-    private String newUserEmail;
+    private String newUserEmail1;
     private static String group;
     private String NewUserHomephone;
     private String NewUserWorkphone;
@@ -62,18 +62,14 @@ public class ContactData {
         return NewUserWorkphone;
     }
 
-    public String getNewUserEmail() {
-        return newUserEmail;
-<<<<<<< HEAD
-<<<<<<< HEAD
+    public String getNewUserEmail1() {
+        return newUserEmail1;
+
     }
 
     public File getPhoto() {
         return photo;
-=======
->>>>>>> parent of b393161... Task #11
-=======
->>>>>>> parent of b393161... Task #11
+
     }
 
     public static String getGroup() {
@@ -111,57 +107,53 @@ public class ContactData {
     }
 
     public ContactData withNewUserMoblle(String newUserMoblle) {
-        this.newUserMoblle = newUserMoblle;
-        return this;
-    }
+
+            this.newUserMoblle = newUserMoblle;
+            return this;
+        }
 
     public ContactData withNewUserWorkphone(String newUserWorkphone) {
         this.NewUserWorkphone = newUserWorkphone;
         return this;
     }
 
-    public ContactData withNewUserEmail(String newUserEmail) {
-        this.newUserEmail = newUserEmail;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        return this;
-    }
+    public ContactData withNewUserEmail1 (String newUserEmail1){
+            this.newUserEmail1 = newUserEmail1;
+            return this;
+        }
 
-    public ContactData withPhoto(File photo) {
-        this.photo = photo;
-=======
->>>>>>> parent of b393161... Task #11
-=======
->>>>>>> parent of b393161... Task #11
-        return this;
-    }
+        public ContactData withPhoto (File photo){
+            this.photo = photo;
+            return this;
+        }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }
+        public ContactData withGroup (String group){
+            this.group = group;
+            return this;
+        }
+        @Override
+        public String toString () {
+            return "ContactData{" +
+                    "newUserName='" + newUserName + '\'' +
+                    ", newUserLastname='" + newUserLastname + '\'' +
+                    '}';
+        }
 
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "newUserName='" + newUserName + '\'' +
-                ", newUserLastname='" + newUserLastname + '\'' +
-                '}';
-    }
+        @Override
+        public boolean equals (Object o){
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ContactData that = (ContactData) o;
+            return Objects.equals(newUserName, that.newUserName) &&
+                    Objects.equals(newUserLastname, that.newUserLastname);
+        }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return Objects.equals(newUserName, that.newUserName) &&
-                Objects.equals(newUserLastname, that.newUserLastname);
-    }
+        @Override
+        public int hashCode () {
+            return Objects.hash(newUserName, newUserLastname);
+        }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(newUserName, newUserLastname);
+
     }
 
 
-}
