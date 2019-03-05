@@ -31,6 +31,9 @@ public class UserCreateNew extends TestBase {
 
     Assert.assertEquals(app.contact().count(), before.size()+1);
     Contacts after = app.contact().all();
+
+   // Contacts a = before.withAdded(contact);
+   // assertThat(after,equalTo(a));
 //    assertThat(after, equalTo(before.withAdded(contact)));
   }
 

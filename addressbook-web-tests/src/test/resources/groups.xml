@@ -1,0 +1,12 @@
+<list>
+  <group>
+    <groupName>test 0</groupName>
+    <groupHeader>header 0</groupHeader>
+    <goupFooter>footer 0</goupFooter>
+  </group>
+  <group>
+    <groupName>test 1</groupName>
+    <groupHeader>header 1</groupHeader>
+    <goupFooter>footer 1</goupFooter>
+  </group>
+</list>

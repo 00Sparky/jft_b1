@@ -101,8 +101,8 @@ public class ContactHelper extends HelperBase {
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-            String first_name = cells.get(1).getText();
-            String last_name = cells.get(2).getText();
+            String first_name = cells.get(2).getText();
+            String last_name = cells.get(1).getText();
             String address = cells.get(3).getText();
             String allEmail = cells.get(4).getText();
             String allPhones = cells.get(5).getText();
