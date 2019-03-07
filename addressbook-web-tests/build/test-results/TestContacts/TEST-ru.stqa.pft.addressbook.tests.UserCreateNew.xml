@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.UserCreateNew" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-07T20:22:44" hostname="00Sparky" time="13.617">
+  <properties/>
+  <testcase name="testNewUserCreation[0](ContactData{newUserName='Name 0', newUserLastname='Lastname 0'})" classname="ru.stqa.pft.addressbook.tests.UserCreateNew" time="7.673"/>
+  <testcase name="testNewUserCreation[1](ContactData{newUserName='Name 1', newUserLastname='Lastname 1'})" classname="ru.stqa.pft.addressbook.tests.UserCreateNew" time="5.943"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Security framework of XStream not initialized, XStream is probably vulnerable.
+]]></system-err>
+</testsuite>
