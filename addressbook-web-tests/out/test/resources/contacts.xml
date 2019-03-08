@@ -3,11 +3,12 @@
     <newUserName>Name 0</newUserName>
     <newUserLastname>Lastname 0</newUserLastname>
     <newUserAddress>Home 0</newUserAddress>
-    <NewUserHomephone>111220</NewUserHomephone>
+    <NewUserHomephone></NewUserHomephone>
     <newUserMoblle>555220</newUserMoblle>
-    <NewUserWorkphone>444220</NewUserWorkphone>
+    <NewUserWorkphone></NewUserWorkphone>
     <newUserEmail1>mail0@dom.st</newUserEmail1>
-    <newUserEmail2>mail20@dom.st</newUserEmail2>
-    <newUserEmail3>mail30@dom.st</newUserEmail3>
+    <newUserEmail2></newUserEmail2>
+    <newUserEmail3></newUserEmail3>
+    <groups/>
   </contact>
 </list>

@@ -47,16 +47,16 @@ public class UserCreateNew extends TestBase {
     app.goTo().gotoHomepage();
     Contacts before = app.db().contacts();
     app.contact().goToAddNewUserPage();
-    ContactData newContact = new ContactData()
-            .withNewUserName("test_name").withNewUserLastname("last_name").inGroup(groups.iterator().next());
+   // ContactData newContact = new ContactData()
+      //      .withNewUserName("test_name").withNewUserLastname("last_name").inGroup(groups.iterator().next());
    // File photo = new File("src/test/resources/file.jpg");
-    app.contact().createNewContact(newContact, true);
+    app.contact().createNewContact(contact, true);
 
     Assert.assertEquals(app.contact().count(), before.size()+1);
     Contacts after = app.db().contacts();
 
     Contacts a = before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()));
-    assertThat(after,equalTo(a));
+   // assertThat(after,equalTo(a));
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
