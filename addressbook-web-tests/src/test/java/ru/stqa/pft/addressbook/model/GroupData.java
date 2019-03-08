@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @XStreamAlias("group")
 @Entity
-@Table(name="group_list")
+@Table(name = "group_list")
 public class GroupData {
     @XStreamOmitField
     @Id
@@ -23,11 +23,11 @@ public class GroupData {
     private String groupName;
 
     @Column(name="group_header")
-    @Type(type="test")
+    @Type(type="text")
     private String groupHeader;
 
     @Column(name="group_footer")
-   @Type(type="test")
+    @Type(type="text")
     private String goupFooter;
 
 
@@ -81,11 +81,13 @@ public class GroupData {
         if (o == null || getClass() != o.getClass()) return false;
         GroupData groupData = (GroupData) o;
         return id == groupData.id &&
-                Objects.equals(groupName, groupData.groupName);
+                Objects.equals(groupName, groupData.groupName) &&
+                Objects.equals(groupHeader, groupData.groupHeader) &&
+                Objects.equals(goupFooter, groupData.goupFooter);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, groupName);
+        return Objects.hash(id, groupName, groupHeader, goupFooter);
     }
 }
