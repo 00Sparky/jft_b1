@@ -13,26 +13,27 @@ public class UserModificationTest extends TestBase {
 
     @BeforeMethod
     public void Preconditions() {
-        app.goTo().gotoHomepage();
-        if (!app.contact().isContactExists()) {
+        if (app.db().contacts().size() == 0) {
+            app.goTo().gotoHomepage();
             app.contact().createNewContact(new ContactData()
                     .withNewUserName("Firstname")
                     .withNewUserLastname("Lastname"), true);
         }
     }
 
+
     @Test
     public void testUserModification() {
         app.goTo().gotoHomepage();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData()
                 .withId(modifiedContact.getId())
                 .withNewUserName("Newname")
                 .withNewUserLastname("Modified");
         app.contact().modifyContact(contact, false);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size());
- //       assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 }

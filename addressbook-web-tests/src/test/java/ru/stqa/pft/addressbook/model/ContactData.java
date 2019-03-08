@@ -216,11 +216,18 @@ public class ContactData {
         ContactData that = (ContactData) o;
         return id == that.id &&
                 Objects.equals(newUserName, that.newUserName) &&
-                Objects.equals(newUserLastname, that.newUserLastname);
+                Objects.equals(newUserLastname, that.newUserLastname) &&
+                Objects.equals(newUserAddress, that.newUserAddress) &&
+                Objects.equals(NewUserHomephone, that.NewUserHomephone) &&
+                Objects.equals(newUserMoblle, that.newUserMoblle) &&
+                Objects.equals(NewUserWorkphone, that.NewUserWorkphone) &&
+                Objects.equals(newUserEmail1, that.newUserEmail1) &&
+                Objects.equals(newUserEmail2, that.newUserEmail2) &&
+                Objects.equals(newUserEmail3, that.newUserEmail3);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, newUserName, newUserLastname);
+        return Objects.hash(id, newUserName, newUserLastname, newUserAddress, NewUserHomephone, newUserMoblle, NewUserWorkphone, newUserEmail1, newUserEmail2, newUserEmail3);
     }
 }

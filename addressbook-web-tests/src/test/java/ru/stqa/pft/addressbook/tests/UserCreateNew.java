@@ -42,17 +42,17 @@ public class UserCreateNew extends TestBase {
   @Test (dataProvider = "validContacts")
   public void testNewUserCreation(ContactData contact) throws Exception {
     app.goTo().gotoHomepage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.contact().goToAddNewUserPage();
-    File photo = new File("src/test/resources/file.jpg");
+   // File photo = new File("src/test/resources/file.jpg");
     app.contact().createNewContact(contact, true);
 
     Assert.assertEquals(app.contact().count(), before.size()+1);
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
 
-   // Contacts a = before.withAdded(contact);
-   // assertThat(after,equalTo(a));
-//    assertThat(after, equalTo(before.withAdded(contact)));
+    Contacts a = before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()));
+    assertThat(after,equalTo(a));
+  //  assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
 }
