@@ -6,6 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,11 +42,15 @@ public class UserCreateNew extends TestBase {
 
   @Test (dataProvider = "validContacts")
   public void testNewUserCreation(ContactData contact) throws Exception {
+    Groups groups = app.db().groups();
+
     app.goTo().gotoHomepage();
     Contacts before = app.db().contacts();
     app.contact().goToAddNewUserPage();
+    ContactData newContact = new ContactData()
+            .withNewUserName("test_name").withNewUserLastname("last_name").inGroup(groups.iterator().next());
    // File photo = new File("src/test/resources/file.jpg");
-    app.contact().createNewContact(contact, true);
+    app.contact().createNewContact(newContact, true);
 
     Assert.assertEquals(app.contact().count(), before.size()+1);
     Contacts after = app.db().contacts();
