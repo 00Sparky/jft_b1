@@ -34,6 +34,10 @@ public class UserModificationTest extends TestBase {
         app.contact().modifyContact(contact, false);
         Contacts after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size());
+        Contacts a=before.without(modifiedContact).withAdded(contact);
         assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+
     }
+
+
 }

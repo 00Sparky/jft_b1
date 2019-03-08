@@ -19,38 +19,38 @@ public class ContactData {
     private int id = Integer.MAX_VALUE;
 
     @Column(name="firstname")
-    private String newUserName;
+    private String newUserName = "";
 
     @Column(name = "lastname")
-    private String newUserLastname;
+    private String newUserLastname = "";
 
     @Column(name="address")
     @Type(type="text")
-    private String newUserAddress;
+    private String newUserAddress = "";
 
     @Column(name = "home")
     @Type(type="text")
-    private String NewUserHomephone;
+    private String NewUserHomephone = "";
 
     @Column(name = "mobile")
     @Type(type="text")
-    private String newUserMoblle;
+    private String newUserMoblle = "";
 
     @Column(name = "work")
     @Type(type="text")
-    private String NewUserWorkphone;
+    private String NewUserWorkphone = "";
 
     @Column(name="email")
     @Type(type="text")
-    private String newUserEmail1;
+    private String newUserEmail1 = "";
 
     @Column(name="email2")
     @Type(type="text")
-    private String newUserEmail2;
+    private String newUserEmail2 = "";
 
     @Column(name="email3")
     @Type(type="text")
-    private String newUserEmail3;
+    private String newUserEmail3 = "";
 
     @Transient
     private static String group;
@@ -64,16 +64,6 @@ public class ContactData {
     @Transient
     private String allEmail;
 
-    /*
-    public ContactData(String NewUserName, String NewUserLastname, String NewUserAddress, String NewUserMoblle, String NewUserEmail, String Group) {
-        newUserName = NewUserName;
-        newUserLastname = NewUserLastname;
-        newUserAddress = NewUserAddress;
-        newUserMoblle = NewUserMoblle;
-        newUserEmail = NewUserEmail;
-        group = Group;
-    }
-    */
 
     public int getId() {
         return id;

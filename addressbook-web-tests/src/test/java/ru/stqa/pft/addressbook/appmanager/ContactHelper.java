@@ -24,9 +24,13 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactData.getNewUserName());
         type(By.name("lastname"), contactData.getNewUserLastname());
         type(By.name("address"), contactData.getNewUserAddress());
+        type(By.name("home"), contactData.getNewUserHomephone());
         type(By.name("mobile"), contactData.getNewUserMoblle());
+        type(By.name("work"), contactData.getNewUserWorkphone());
         type(By.name("email"), contactData.getNewUserEmail1());
-//        attach(By.name("photo"), contactData.getPhoto());
+        type(By.name("email2"), contactData.getNewUserEmail2());
+        type(By.name("email3"), contactData.getNewUserEmail3());
+        //attach(By.name("photo"), contactData.getPhoto());
 
         if (creation) {
             if (ContactData.getGroup() !=null) {

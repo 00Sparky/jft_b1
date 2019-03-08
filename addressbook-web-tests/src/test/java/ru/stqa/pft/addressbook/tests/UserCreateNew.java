@@ -52,7 +52,7 @@ public class UserCreateNew extends TestBase {
 
     Contacts a = before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()));
     assertThat(after,equalTo(a));
-  //  assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
 }

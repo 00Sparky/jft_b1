@@ -36,11 +36,12 @@ public class GroupModificationTests extends TestBase {
                 .withGroupHeader("test2-edit")
                 .withGoupFooter("test3-edit");
         app.group().modify(group);
-        assertThat(app.group().count(), equalTo(before.size()));
+        //assertThat(app.group().count(), equalTo(before.size()));
         Groups after = app.db().groups();
         assertThat(after, equalTo(before
                 .without(modifiedGroup)
                 .withAdded(group)));
+        verifyGroupListInUI();
     }
 
 

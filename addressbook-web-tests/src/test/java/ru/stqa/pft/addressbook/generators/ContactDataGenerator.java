@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ContactDataGenerator {
 
-    @Parameter(names = "-c", description = "GroupCount")
+    @Parameter(names = "-c", description = "ContactCount")
     public int count;
 
     @Parameter (names = "-f", description = "Target file")
@@ -73,7 +73,11 @@ public class ContactDataGenerator {
                     .withNewUserLastname(String.format("Lastname %s", i))
                     .withNewUserAddress(String.format("Home %s", i))
             .withNewUserEmail1(String.format("mail%s@dom.st", i))
-            .withNewUserMoblle(String.format("55522%s", i)));
+                    .withNewUserEmail2(String.format("mail2%s@dom.st", i))
+                    .withNewUserEmail3(String.format("mail3%s@dom.st", i))
+                    .withNewUserHomephone(String.format("11122%s",i))
+            .withNewUserMoblle(String.format("55522%s", i))
+            .withNewUserWorkphone(String.format("44422%s",i)));
         }
         return contacts;
     }
