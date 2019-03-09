@@ -1,9 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 
@@ -27,6 +29,10 @@ public class HelperBase {
                 wd.findElement(locator).sendKeys(text);
             }
         }
+    }
+
+    protected void select(By locator, String text) {
+       new Select(wd.findElement(locator)).selectByVisibleText(text);
     }
 
     protected void attach(By locator, File file) {

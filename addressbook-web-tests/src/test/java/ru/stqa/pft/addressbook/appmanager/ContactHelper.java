@@ -97,6 +97,31 @@ public class ContactHelper extends HelperBase {
         return isElementPrestnt(By.name("selected[]"));
     }
 
+    public void contactToGroup(By locator, String text) {
+        new Select(wd.findElement(locator)).selectByVisibleText(text);
+        wd.findElement(By.name("add")).click();
+
+    }
+
+    public void contactFromGroup() {
+        wd.findElement(By.name("remove")).click();
+
+    }
+
+    public void goToGroup(String text) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(text);
+
+    }
+
+    public void returnToAllGroups() {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
+
+    }
+
+    public void selectGroupWithContacts(By locator, String text) {
+        new Select(wd.findElement(locator)).selectByVisibleText(text);
+    }
+
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }

@@ -45,6 +45,7 @@ public class GroupHelper extends HelperBase {
         wd.findElement(By.cssSelector("input[value='" + id + "' ]")).click();
     }
 
+
     public void initGroupModification() {
         click(By.name("edit"));
     }
