@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.MatcherAssert;
 import org.hibernate.sql.Select;
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
@@ -8,6 +9,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.*;
 
 
 public class LinkContactToGroup extends TestBase {
@@ -37,9 +41,12 @@ public class LinkContactToGroup extends TestBase {
         ContactData contact = allContacts.iterator().next();
         Groups allGroups = app.db().groups();
         GroupData group = allGroups.iterator().next();
+        Contacts beforeLink = group.getContacts();
         app.contact().selectContactById(contact.getId());
-        app.contact().contactToGroup(By.name("to_group"), group.getGroupName());
+        app.contact().contactToGroup(group.getGroupName());
         app.contact().returnToHomePage();
+        Contacts afterLink = group.getContacts();
+        assertThat(afterLink, equalTo(beforeLink.withAdded(contact)));
     }
 
     @Test
@@ -48,14 +55,16 @@ public class LinkContactToGroup extends TestBase {
         Groups allGroups = app.db().groups();
         for (int i=0; i<allGroups.size(); i++){
             GroupData group = allGroups.iterator().next();
-            app.contact().selectGroupWithContacts( By.name("group"),group.getGroupName());
+            app.contact().selectGroupWithContacts(group.getGroupName());
             if (app.contact().isContactExists()){
-                Contacts linkedContacts = group.getContacts();;
-                ContactData contact = linkedContacts.iterator().next();
+                Contacts beforeRemove = group.getContacts();
+                ContactData contact = beforeRemove.iterator().next();
                 app.contact().selectContactById(contact.getId());
-                app.contact().contactFromGroup();
+                app.contact().removeContactFromGroup();
                 app.contact().returnToHomePage();
                 app.contact().returnToAllGroups();
+                Contacts afterRemove = group.getContacts();
+                assertThat(afterRemove, equalTo(beforeRemove.without(contact)));
             }
         }
 

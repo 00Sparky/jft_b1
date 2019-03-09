@@ -97,13 +97,13 @@ public class ContactHelper extends HelperBase {
         return isElementPrestnt(By.name("selected[]"));
     }
 
-    public void contactToGroup(By locator, String text) {
-        new Select(wd.findElement(locator)).selectByVisibleText(text);
+    public void contactToGroup(String text) {
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(text);
         wd.findElement(By.name("add")).click();
 
     }
 
-    public void contactFromGroup() {
+    public void removeContactFromGroup() {
         wd.findElement(By.name("remove")).click();
 
     }
@@ -118,8 +118,8 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void selectGroupWithContacts(By locator, String text) {
-        new Select(wd.findElement(locator)).selectByVisibleText(text);
+    public void selectGroupWithContacts(String text) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(text);
     }
 
     public int count() {
