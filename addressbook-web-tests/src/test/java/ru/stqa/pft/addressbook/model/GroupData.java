@@ -5,9 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @XStreamAlias("group")
 @Entity
@@ -31,6 +29,9 @@ public class GroupData {
 
     @ManyToMany(mappedBy = "groups" , fetch = FetchType.EAGER)
     private Set<ContactData> contacts = new HashSet<ContactData>();
+
+
+
 
     public int getId() {
         return id;

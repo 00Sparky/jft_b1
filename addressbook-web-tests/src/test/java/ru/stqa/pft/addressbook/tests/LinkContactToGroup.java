@@ -45,7 +45,9 @@ public class LinkContactToGroup extends TestBase {
         app.contact().selectContactById(contact.getId());
         app.contact().contactToGroup(group.getGroupName());
         app.contact().returnToHomePage();
-        Contacts afterLink = group.getContacts();
+        Groups g = app.db().getGroupById(group.getId());
+        GroupData gr=g.iterator().next();
+        Contacts afterLink = gr.getContacts();
         assertThat(afterLink, equalTo(beforeLink.withAdded(contact)));
     }
 
@@ -63,8 +65,10 @@ public class LinkContactToGroup extends TestBase {
                 app.contact().removeContactFromGroup();
                 app.contact().returnToHomePage();
                 app.contact().returnToAllGroups();
-                Contacts afterRemove = group.getContacts();
-                //assertThat(afterRemove, equalTo(beforeRemove.without(contact)));
+                Groups g = app.db().getGroupById(group.getId());
+                GroupData gr=g.iterator().next();
+                Contacts afterRemove = gr.getContacts();
+                assertThat(afterRemove, equalTo(beforeRemove.without(contact)));
           //  }
         }
 

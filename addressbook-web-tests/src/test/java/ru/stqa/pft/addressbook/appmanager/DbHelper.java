@@ -49,16 +49,18 @@ public class DbHelper {
         return new Contacts(result);
     }
 
-    public Contacts links() {
+
+    public Groups getGroupById(int id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<ContactData> result = session.createQuery( "from address_in_groups" ).list();
-        for ( ContactData link :  result ) {
-            System.out.println(link);
+        List<GroupData> result = session.createQuery( "from GroupData where group_id = "+id+" " ).list();
+        for ( GroupData group :  result ) {
+            System.out.println(group);
         }
         session.getTransaction().commit();
         session.close();
-        return new Contacts(result);
+        return new Groups(result);
+
     }
 }
 
