@@ -24,6 +24,7 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
+    private ManageUserHelper navigationHelper;
 
 
     public ApplicationManager(String browser) {
@@ -34,6 +35,7 @@ public class ApplicationManager {
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
     }
 
 
@@ -50,6 +52,10 @@ public class ApplicationManager {
       } catch (NoSuchElementException e) {
         return false;
       }
+    }
+
+    public ManageUserHelper manageUser(){
+        return new ManageUserHelper(this);
     }
 
     public HttpSession newSession (){
